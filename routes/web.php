@@ -124,13 +124,11 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
-
-
-
-
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::post('/getDataTablePriceItem', [HomeController::class, 'getDataTable'])->name('home.getDataTablePriceItem');
 Route::post('/getDataGrafikPriceItem', [HomeController::class, 'getGrafik'])->name('home.getDataGrafikPriceItem');
+
+Route::group(['middleware' => ['guest']], function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login/process', [LoginController::class, 'login'])->name('login.process');
@@ -143,5 +141,8 @@ Route::get('/forgot-password', [ResetPasswordController::class, 'index'])->name(
 Route::post('/forgot-password/process', [ResetPasswordController::class, 'lupaPassword'])->name('lupa_password.process');
 Route::get('/reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset_password.index');
 Route::post('/reset-password/process', [ResetPasswordController::class, 'resetPasswordProcess'])->name('reset_password.process');
+});
 
-
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+});
