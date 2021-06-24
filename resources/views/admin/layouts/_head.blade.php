@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Lorem Ipsum</title>
+    <title>Admin Panel</title>
     <link href="{{asset('admin-template/select2/css/select2.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin-template/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin-template/css/font-awesome.min.css')}}" rel="stylesheet">
