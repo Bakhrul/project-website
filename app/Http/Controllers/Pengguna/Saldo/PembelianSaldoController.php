@@ -24,7 +24,7 @@ class PembelianSaldoController extends Controller
     public function buySaldo(Request $request){
         DB::BeginTransaction();
         try {
-            $authId = '2';
+            $authId = Auth::user()->u_id;
             $saldoId = $request->saldo;
 
             $saldo = DB::table('m_saldo')->where('s_id',$saldoId)->first();
