@@ -31,7 +31,7 @@ class LoginController extends Controller
                 return redirect()->back()->with('error', 'Password tidak sesuai!');
             }
             Auth::login($user);
-            return redirect()->intended('/profile');
+            return redirect()->intended('/');
 
         } catch (\Throwable $th) {
             $code = 500;
