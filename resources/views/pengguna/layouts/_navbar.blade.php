@@ -29,13 +29,13 @@
                 @endif
                 <li class="nav-item">
                     @if(Auth::check())
-                    <a class="nav-link" href="{{route('login.index')}}">
+                    <a class="nav-link" href="{{route('profile.index')}}">
                         <img src="{{asset('storage/images/pengguna')}}/{{Auth::user()->u_photo}}" class="user-nav-image"
                             width="30px"
                             onerror="this.onerror=null; this.src='{{asset('member-template/images/avatar-placeholder.png')}}'">
                     </a>
                     @else
-                    <a class="nav-link" href="{{route('profile.index')}}">
+                    <a class="nav-link" href="{{route('login.index')}}">
                         <img src="{{asset('member-template/images/avatar-placeholder.png')}}" class="user-nav-image"
                             width="30px">
                     </a>
