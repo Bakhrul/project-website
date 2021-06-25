@@ -12,24 +12,34 @@
                     <a class="nav-link {{ Request::is('/') ? 'active' : ''}}" href="{{url('/')}}">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('pembelian-saldo') ? 'active' : ''}}" href="{{route('pembelian_saldo.index')}}">Pembelian Saldo</a>
+                    <a class="nav-link {{ Request::is('pembelian-saldo') ? 'active' : ''}}"
+                        href="{{route('pembelian_saldo.index')}}">Pembelian Saldo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('history-pembelian-saldo') ? 'active' : ''}}"
                         href="{{route('history_saldo.index')}}">History Saldo</a>
                 </li>
+                @if(Auth::check())
+                    @if(Auth::user()->u_type == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{url('admin-panel')}}">Admin Panel</a>
+                        </li>
+                    @endif
+                @endif
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('profile.index')}}">
-                        @if(Auth::check())
+                    @if(Auth::check())
+                    <a class="nav-link" href="{{route('login.index')}}">
                         <img src="{{asset('storage/images/pengguna')}}/{{Auth::user()->u_photo}}" class="user-nav-image"
                             width="30px"
                             onerror="this.onerror=null; this.src='{{asset('member-template/images/avatar-placeholder.png')}}'">
-                        @else
+                    </a>
+                    @else
+                    <a class="nav-link" href="{{route('profile.index')}}">
                         <img src="{{asset('member-template/images/avatar-placeholder.png')}}" class="user-nav-image"
                             width="30px">
-                        @endif
-
                     </a>
+                    @endif
                 </li>
             </ul>
 

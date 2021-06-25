@@ -26,7 +26,7 @@
                             <thead>
                                 <tr>
                                     <th>Nama Pengguna</th>
-                                    <th>Email</th>
+                                    <th>Nama Paket</th>
                                     <th>Tanggal</th>
                                     <th>Nominal</th>
                                     <th>Status</th>
@@ -103,9 +103,8 @@
                     class: 'text-left'
                 },
                 {
-                    data: 'u_email',
-                    name: 'u_email',
-                    class: 'text-left'
+                    data: 'hs_name',
+                    name: 'hs_name',
                 },
                 {
                     data: 'tanggal',

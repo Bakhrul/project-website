@@ -33,6 +33,7 @@
                         <table class="table table-striped table-bordered w-100" id="table-saldo">
                             <thead>
                                 <tr>
+                                    <th>Nama Paket</th>
                                     <th>Nominal</th>
                                     <th style="text-align:center">Aksi</th>
                                 </tr>
@@ -102,6 +103,10 @@
             },
             columns: [
                 {
+                    data: 's_name',
+                    name: 's_name',
+                },
+                {
                     data: 'nominal',
                     name: 'nominal',
                     class: 'text-right'
@@ -124,14 +129,21 @@
     // Add Data
     function tambahSaldo() {
         $('#modal-tambah-saldo').modal('show');
+        $('#s_name_store').val('');
         $('#s_price_store').val('0');
         $('#btnStoreSaldo').prop('disabled',false);
     }
 
     function storeSaldo() {
-        let name = $('#s_price_store').val();
+        let price = $('#s_price_store').val();
+        let name = $('#s_name_store').val();
 
         if(!name){
+            toastr.warning('Nama paket tidak boleh kosong!', 'Peringatan!');
+            return false;
+        }
+
+        if(!price){
             toastr.warning('Nominal saldo tidak boleh kosong!', 'Peringatan!');
             return false;
         }
@@ -165,6 +177,7 @@
             success: function (resp) {
                 $('#modal-edit-saldo').modal('show');
                 $('#s_id_update').val(resp.data.s_id);
+                $('#s_name_update').val(resp.data.s_name);
                 $('#s_price_update').val(resp.data.s_price ? humanizePrice(resp.data.s_price) : '0');
                 $('#btnUpdateSaldo').prop('disabled',false);
             },
@@ -174,8 +187,15 @@
 
 
     function updateSaldo() {
-        let name = $('#s_price_update').val();
+        let price = $('#s_price_update').val();
+        let name = $('#s_name_update').val();
+
         if(!name){
+            toastr.warning('Nama paket tidak boleh kosong!', 'Peringatan!');
+            return false;
+        }
+
+        if(!price){
             toastr.warning('Nominal saldo tidak boleh kosong!', 'Peringatan!');
             return false;
         }

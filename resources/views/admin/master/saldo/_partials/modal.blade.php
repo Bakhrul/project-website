@@ -11,6 +11,11 @@
                 <form id="form-tambah-saldo">
                     @csrf
                     <div class="form-group">
+                        <label class="label-notempty">Nama Paket</label>
+                        <input type="text" class="form-control" id="s_name_store" name="s_name"
+                            placeholder="Masukkan nama paket">
+                    </div>
+                    <div class="form-group">
                         <label class="label-notempty">Nominal Saldo</label>
                         <input type="text" class="form-control input-currency" id="s_price_store" name="s_price"
                             placeholder="Masukkan nominal saldo">
@@ -43,6 +48,11 @@
                 <form id="form-edit-saldo">
                     @csrf
                     <input type="hidden" class="d-none" name="s_id" id="s_id_update" readonly>
+                    <div class="form-group">
+                        <label class="label-notempty">Nama Paket</label>
+                        <input type="text" class="form-control" id="s_name_update" name="s_name"
+                            placeholder="Masukkan nama paket">
+                    </div>
                     <div class="form-group">
                         <label class="label-notempty">Nominal Saldo</label>
                         <input type="text" class="form-control input-currency" id="s_price_update" name="s_price"

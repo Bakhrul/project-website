@@ -43,6 +43,7 @@
                     <thead class=" thead-dark">
                         <tr>
                             <th scope="col" class="text-center">Tanggal Pembelian</th>
+                            <th scope="col">Nama Paket</th>
                             <th scope="col" class="text-right">Harga</th>
                             <th scope="col" class="text-center">Status</th>
                             <th scope="col" class="text-center">Dibayar Tanggal</th>
@@ -56,6 +57,13 @@
                                 {{date('d/m/Y', strtotime($row->created_at))}}
                                 @else
                                 -
+                                @endif
+                            </td>
+                            <td>
+                                @if($row->hs_name)
+                                    {{$row->hs_name}}
+                                @else
+                                    -
                                 @endif
                             </td>
                             <td class="text-right">

@@ -11,7 +11,11 @@
         border-radius: 10px;
         margin-bottom: 25px;
     }
-
+    .saldo-element .title{
+        font-size:12px;
+        color:#007bff !important;
+        padding-bottom:5px;
+    }
     .saldo-element .price {
         font-size: 20px;
     }
@@ -90,6 +94,13 @@
                 @foreach($saldo as $row)
                 <div class="col-lg-3 col-md-6">
                     <div class="saldo-element">
+                        <div class="title">
+                            @if($row->s_name)
+                            {{$row->s_name}}
+                            @else
+                            -
+                            @endif
+</div>
                         <div class="price">
                             @if($row->s_price)
                             {{number_format($row->s_price,2)}}

@@ -36,6 +36,7 @@ class PembelianSaldoController extends Controller
             DB::table('d_history_saldo')->insert([
                 'hs_user' => $authId,
                 'hs_price' => $saldo->s_price,
+                'hs_name' => $saldo->s_name,
                 'hs_status' => 'waiting',
                 'hs_type' => 'in',
             ]);

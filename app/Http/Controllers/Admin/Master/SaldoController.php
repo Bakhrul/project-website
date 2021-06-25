@@ -32,7 +32,7 @@ class SaldoController extends Controller
                 $delete = '<button class="btn btn-xs btn-danger" type="button" onclick="deleteSaldo(' . $item->s_id . ')"><i class="fa fa-trash"></i></button>';
 				return '<div>' . $edit . $delete . '</div>';
 			})
-			->rawColumns(['action'])
+			->rawColumns(['action','nominal'])
 			->make(true);
 	}
 
@@ -42,6 +42,7 @@ class SaldoController extends Controller
         try {
 
 			DB::table('m_saldo')->insert([
+                's_name' => $request->s_name,
 				's_price' => str_replace(",", "", $request->s_price),
 			]);
 
@@ -100,6 +101,7 @@ class SaldoController extends Controller
             }
 
 			DB::table('m_saldo')->where('s_id',$id)->update([
+                's_name' => $request->s_name,
                 's_price' => str_replace(",", "", $request->s_price),
             ]);
 
