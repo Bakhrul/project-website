@@ -22,10 +22,13 @@
     <div style="background:#081f36 !important;text-align:center;padding:30px 10px;color:#fff;font-size:20px;">
         Pembelian Saldo Berhasil
     </div>
-    <div style="text-align:center;padding:15px;">Terima kasih telah membeli paket saldo, dengan detail paket sebagai berikut :</div>
+    <div style="text-align:center;padding:15px;">Terima kasih telah membeli paket saldo, dengan detail paket sebagai
+        berikut :</div>
     <div style="text-align:center;padding:5px 15px;"><b>Nama Paket</b> : {{$data['saldo']->s_name}}</div>
-    <di style="text-align:center;padding:5px 15px;"><b>Harga</b> : {{number_format($data['saldo']->s_price ?? 0,2,',','.')}}</div>
-        <div style="text-align:center;padding:15px;">Silahkan transfer ke salah satu daftar rekening dibawah sesuai dengan nominal
+    <di style="text-align:center;padding:5px 15px;"><b>Harga</b> :
+        {{number_format($data['saldo']->s_price ?? 0,2,',','.')}}</div>
+        <div style="text-align:center;padding:15px;">Silahkan transfer ke salah satu daftar rekening dibawah sesuai
+            dengan nominal
             pembelian :</div>
         @foreach($data['bank'] as $row)
         <div style="text-align:center;border:1px #ddd solid;padding:15px;margin:15px;line-height:2;">
@@ -35,7 +38,8 @@
         </div>
         @endforeach
 
-        <div style="text-align:center;background: #F7F9FB !important; padding:15px;margin-top:15px;">Copyright © 2021 Project Website
+        <div style="text-align:center;background: #F7F9FB !important; padding:15px;margin-top:15px;">Copyright © 2021
+            Project Website
         </div>
 </body>
 
