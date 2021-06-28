@@ -31,6 +31,10 @@ class LoginController extends Controller
             if (!Hash::check($request->u_password, $user->u_password)) {
                 return redirect()->back()->with('error', 'Password tidak sesuai!');
             }
+
+            if($user->u_verification == '0'){
+                return redirect()->back()->with('error', 'Silahkan verifikasi pendaftaran terlebih dahulu, cek inbox atau spam email anda!');
+            }
             Auth::login($user);
             return redirect()->intended('/');
 
