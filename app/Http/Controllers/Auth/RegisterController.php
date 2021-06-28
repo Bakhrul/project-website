@@ -10,6 +10,8 @@ use DB;
 use DataTables;
 use Exception;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\mailSender;
 
 class RegisterController extends Controller
 {
@@ -24,9 +26,9 @@ class RegisterController extends Controller
             if($validateEmail){
                 throw new Exception('Email sudah digunakan, gundakan email lainnya!', 400);
             }
-
+            $token = Str::random(50);
             DB::table('m_user')->insert([
-                'u_token' =>  Str::random(50),
+                'u_token' =>  $token,
                 'u_name' => $request->u_name,
                 'u_email' => $request->u_email,
                 'u_password' => Hash::make($request->u_password),
@@ -35,8 +37,14 @@ class RegisterController extends Controller
                 'u_verification' => '0',
             ]);
 
-            //send email verifikasi
+            $data = [
+                'token' => $token,
+                'name' =>$request->u_name,
+                'email' => $request->u_email
+            ];
 
+            //send email verifikasi
+            Mail::to($request->u_email, $request->u_name)->queue(new mailSender('mails.verification', 'Verifikasi Pendaftaran Akun Anda!', $data));
 
 			DB::commit();
 			return response()->json([

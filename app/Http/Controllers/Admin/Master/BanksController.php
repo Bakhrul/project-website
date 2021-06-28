@@ -8,10 +8,19 @@ use DB;
 use DataTables;
 use Exception;
 use Carbon\Carbon;
+use Auth;
 
 class BanksController extends Controller
 {
     public function index(){
+
+        // protect access admin
+        $userId = Auth::user()->u_id;
+        $dataAdmin = DB::table('m_user')->where('u_id',$userId)->where('u_type','admin')->first();
+        if(!$dataAdmin){
+            return abort(404);
+        }
+
         return view('admin.master.banks.index');
     }
     public function datatable() {

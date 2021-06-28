@@ -9,10 +9,18 @@ use DB;
 use DataTables;
 use Exception;
 use Carbon\Carbon;
+use Auth;
 
 class ItemController extends Controller
 {
     public function index(){
+        // protect access admin
+        $userId = Auth::user()->u_id;
+        $dataAdmin = DB::table('m_user')->where('u_id',$userId)->where('u_type','admin')->first();
+        if(!$dataAdmin){
+            return abort(404);
+        }
+
         $satuan = DB::table('m_unit')->orderBy('created_at','desc')->get();
         return view('admin.master.item.index',array(
             'satuan' => $satuan

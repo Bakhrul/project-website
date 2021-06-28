@@ -10,6 +10,8 @@ use DB;
 use DataTables;
 use Exception;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\mailSender;
 
 class ResetPasswordController extends Controller
 {
@@ -27,7 +29,14 @@ class ResetPasswordController extends Controller
             }
 
             //send email lupa password
+            $data = [
+                'token' => $validateUser->u_token,
+                'name' =>$validateUser->u_name,
+                'email' => $validateUser->u_email
+            ];
 
+            //send email verifikasi
+            Mail::to($validateUser->u_email, $validateUser->u_name)->queue(new mailSender('mails.forgot-password', 'Reset Password Akun Anda!', $data));
 
 			DB::commit();
 			return response()->json([

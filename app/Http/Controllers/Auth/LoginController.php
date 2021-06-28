@@ -22,6 +22,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         try {
+            // dd($request->all());
             $user = m_user::where('u_email', $request->u_email)->first();
 
             if (!$user) {
@@ -38,11 +39,7 @@ class LoginController extends Controller
             if ($th->getCode() == 400) {
                 $code = 400;
             }
-            return response()->json([
-                'status' => 'error',
-                'message' => $th->getMessage(),
-                'data' => '',
-            ], $code);
+            return abort(500);
         }
     }
     protected function logout()

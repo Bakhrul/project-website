@@ -146,3 +146,7 @@ Route::post('/reset-password/process', [ResetPasswordController::class, 'resetPa
 Route::get('/storage-link', function () {
     Artisan::call('storage:link');
 });
+
+Route::get('/mail-view', function () {
+    return view('mails.verification');
+});

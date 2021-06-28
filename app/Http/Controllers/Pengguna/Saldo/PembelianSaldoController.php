@@ -11,6 +11,8 @@ use DataTables;
 use Exception;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\mailSender;
 
 class PembelianSaldoController extends Controller
 {
@@ -29,6 +31,11 @@ class PembelianSaldoController extends Controller
 
             $saldo = DB::table('m_saldo')->where('s_id',$saldoId)->first();
 
+            $dataUser = DB::table('m_user')->where('u_id',$authId)->first();
+            if(!$dataUser){
+                throw new Exception('Data user tidak ditemukan, coba muat login dahulu', 400);
+            }
+
             if(!$saldo){
                 throw new Exception('Data saldo tidak ditemukan, coba muat ulang halaman', 400);
             }
@@ -42,10 +49,34 @@ class PembelianSaldoController extends Controller
             ]);
 
             //send email to admin
+            $dataAdmin = DB::table('m_user')->where('u_type','admin')->first();
+            if($dataAdmin){
+                $data = [
+                  'token' => $dataAdmin->u_token,
+                  'name' =>$dataAdmin->u_name,
+                  'email' => $dataAdmin->u_email,
+                  'saldo' => $saldo,
+                  'user' => $dataUser,
+                ];
 
+                Mail::to($dataAdmin->u_email, $dataAdmin->u_name)->queue(new mailSender('mails.pembelian_saldo.admin', 'Pembelian Saldo Pengguna!', $data));
+            }
 
 
             // send email to user
+
+            $bank = DB::table('m_banks')->get();
+            if($dataUser){
+                $data = [
+                  'token' => $dataUser->u_token,
+                  'name' =>$dataUser->u_name,
+                  'email' => $dataUser->u_email,
+                  'saldo' => $saldo,
+                  'bank' => $bank,
+                ];
+
+                Mail::to($dataUser->u_email, $dataUser->u_name)->queue(new mailSender('mails.pembelian_saldo.member', 'Pembelian Saldo!', $data));
+            }
 
 
 			DB::commit();
