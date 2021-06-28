@@ -25,7 +25,7 @@
     <div style="text-align:center;padding:15px;"><b>{{$data['user']->u_name}}</b> baru saja membeli paket saldo, dengan
         detail paket</div>
     <div style="text-align:center;padding:5px 15px;"><b>Nama Paket</b> : {{$data['saldo']->s_name}}</div>
-    <di style="text-align:center;padding:5px 15px;"><b>Harga</b> :
+    <div style="text-align:center;padding:5px 15px;"><b>Harga</b> :
         {{number_format($data['saldo']->s_price ?? 0,2,',','.')}}</div>
         <div style="text-align:center;padding:15px;">Pesan ini dikirim otomatis oleh sistem ketika ada yang membeli
             saldo.</div>

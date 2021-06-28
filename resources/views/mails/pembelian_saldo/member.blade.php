@@ -24,8 +24,8 @@
     </div>
     <div style="text-align:center;padding:15px;">Terima kasih telah membeli paket saldo, dengan detail paket sebagai
         berikut :</div>
-    <div style="text-align:center;padding:5px 15px;"><b>Nama Paket</b> : {{$data['saldo']->s_name}}</div>
-    <di style="text-align:center;padding:5px 15px;"><b>Harga</b> :
+    <div style="text-align:center;padding:5px 15px;width:100%;"><b>Nama Paket</b> : {{$data['saldo']->s_name}}</div>
+    <div style="text-align:center;padding:5px 15px;width:100%;"><b>Harga</b> :
         {{number_format($data['saldo']->s_price ?? 0,2,',','.')}}</div>
         <div style="text-align:center;padding:15px;">Silahkan transfer ke salah satu daftar rekening dibawah sesuai
             dengan nominal
